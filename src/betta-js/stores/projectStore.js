@@ -3,6 +3,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import DirectusSDK from "@directus/sdk-js";
+const client = new DirectusSDK({
+	url: 'http://directus.recycles.cz',
+	project: 'betta'
+});
+
 Vue.use(Vuex);
 
 export function setStore(config) {
@@ -27,6 +33,15 @@ export function setStore(config) {
 		mutations: {
 		},
 		actions: {
+			async init({state}) {
+				try {
+					let data = await client.getCollections();
+					console.log('collections data >>>', data)
+				} catch(e) {
+					console.log('exception >>>', e)
+				}
+				
+			}
 		}
 	})
 }

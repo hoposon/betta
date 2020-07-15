@@ -2,12 +2,12 @@
 
 <template>
 	<div id='betta' class="app">
-		
+		test
 	</div>
 </template>
 
 <script>
-	// import { mapState } from 'vuex';
+	import { mapActions } from 'vuex';
 
 	export default {
 		name: 'ProjectMain',
@@ -25,6 +25,12 @@
 			// translate(lngId, ...args) {
 			// 	return this.$store.getters.translate(lngId, ...args);
 			// }
+			...mapActions([
+				'init'
+			])
+		},
+		async created() {
+			this.init();
 		}
 	}
 </script> 
